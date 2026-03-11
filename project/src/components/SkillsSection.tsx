@@ -12,7 +12,7 @@ const skillCategories = [
   },
   {
     category: "CREATIVE",
-    items: ["Generative Art", "p5.js", "Processing"],
+    items: ["Generative Art", "p5.js", "Digital Art"],
   },
   {
     category: "TOOLS",
