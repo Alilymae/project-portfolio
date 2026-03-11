@@ -1,0 +1,237 @@
+@import url("https://db.onlinewebfonts.com/c/1be24cb794e05db5c90a6b24da7ed1c2?family=Black+Mango");
+@import url("https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Light theme (default) */
+  :root {
+    /* Brand palette - light mode */
+    /* #EFEACD 47 70% 84% */
+    /* #F5F5F5 */
+    --background: 0 0% 95%;
+    /* #0E0000 */
+    --foreground: 0 0% 6%;
+
+    /* #F9D694 as soft card background */
+    --card: 40 94% 69%;
+    --card-foreground: 0 0% 6%;
+
+    --popover: 40 94% 69%;
+    --popover-foreground: 0 0% 6%;
+
+    /* #64090E as primary accent */
+    --primary: 355 87% 25%;
+    --primary-foreground: 47 70% 84%;
+
+    /* #9C0612 as deep secondary */
+    --secondary: 355 89% 32%;
+    --secondary-foreground: 47 70% 84%;
+
+    /* Muted derived from foreground */
+    --muted: 47 25% 35%;
+    --muted-foreground: 47 30% 20%;
+
+    /* Gold accent */
+    --accent: 40 94% 69%;
+    --accent-foreground: 0 0% 6%;
+
+    --destructive: 355 89% 32%;
+    --destructive-foreground: 47 70% 84%;
+
+    --border: 355 87% 25%;
+    --input: 355 87% 25%;
+    --ring: 355 87% 25%;
+
+    --radius: 0rem;
+
+    /* Accent glow + text gradient using brand reds and gold */
+    --glow: 40 94% 69%;
+    /* Hex-based text gradient: #9C0612 → #F9D694 → #64090E (darker red) */
+    --text-gradient: linear-gradient(
+      135deg,
+      #9C0612 0%,
+      #F9D694 50%,
+      #64090E 100%
+    );
+  }
+
+  /* Dark theme */
+  .dark {
+    /* #0E0000 */
+    --background: 0 0% 6%;
+    /* 0% 0% 95% - light gray (swapped from light mode bg) */
+    --foreground: 0 0% 95%;
+
+    /* #64090E */
+    --card: 355 87% 25%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 355 87% 25%;
+    --popover-foreground: 0 0% 95%;
+
+    /* #9C0612 */
+    --primary: 355 89% 32%;
+    --primary-foreground: 0 0% 95%;
+
+    /* #64090E as deep secondary */
+    --secondary: 355 87% 25%;
+    --secondary-foreground: 0 0% 95%;
+
+    /* Muted derived from foreground */
+    --muted: 47 40% 70%;
+    --muted-foreground: 0 0% 85%;
+
+    /* #F9D694 as warm accent */
+    --accent: 40 94% 69%;
+    --accent-foreground: 0 0% 6%;
+
+    --destructive: 355 89% 32%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 355 87% 25%;
+    --input: 355 87% 25%;
+    --ring: 40 94% 69%;
+
+    --radius: 0rem;
+
+    /* Accent glow + text gradient: #9C0612 → #F9D694 → #64090E (darker red) */
+    --glow: 40 94% 69%;
+    --text-gradient: linear-gradient(
+      135deg,
+      #9C0612 0%,
+      #F9D694 50%,
+      #64090E 100%
+    );
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased text-base;
+    cursor: crosshair;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  ::selection {
+    /* #F9D694 on #0E0000 from your palette */
+    background: #F9D694;
+    color: #0E0000;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-padding {
+    @apply py-24 px-6 md:px-12 lg:px-24;
+  }
+
+  .stroke-text {
+    -webkit-text-stroke: 2px hsl(var(--foreground));
+    -webkit-text-fill-color: transparent;
+  }
+
+  .stroke-text-accent {
+    -webkit-text-stroke: 2px hsl(var(--primary));
+    -webkit-text-fill-color: transparent;
+  }
+
+  .marquee {
+    animation: marquee 20s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .grain-overlay {
+    position: relative;
+  }
+
+  .grain-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Background patterns - layered */
+  .bg-pattern {
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% 40%, hsl(var(--primary) / 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, hsl(var(--accent) / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 1px 1px, hsl(var(--foreground) / 0.06) 1px, transparent 0),
+      linear-gradient(hsl(var(--foreground) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.03) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      100% 100%,
+      32px 32px,
+      48px 48px,
+      48px 48px;
+  }
+
+  .hover-glitch:hover {
+    animation: glitch 0.3s ease;
+  }
+
+  @keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-1px, -1px); }
+    80% { transform: translate(1px, 1px); }
+  }
+
+  .animated-underline {
+    position: relative;
+  }
+
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  .animated-underline:hover::after {
+    width: 100%;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  /* Use near-black from your palette family */
+  background: #0E0000;
+}
+::-webkit-scrollbar-thumb {
+  /* Deep red thumb from your palette */
+  background: #9C0612;
+}
