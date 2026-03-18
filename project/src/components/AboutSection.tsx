@@ -32,7 +32,7 @@ const AboutSection = () => {
             className="md:col-span-9 space-y-12"
           >
             <h2 className="text-3xl md:text-5xl font-display font-extrabold uppercase leading-tight">
-              Design Philosphy
+              Design Philosophy
               <br />
               & <span className="text-gradient">Digital Vision</span>
             </h2>
